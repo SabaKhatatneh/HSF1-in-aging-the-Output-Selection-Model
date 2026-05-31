@@ -358,7 +358,7 @@ run_go <- function(gene_ids, orgdb, keytype, label,
       GeneRatio_n  = as.numeric(str_extract(GeneRatio, "^\\d+")),
       GeneRatio_d  = as.numeric(str_extract(GeneRatio, "\\d+$")),
       ratio        = GeneRatio_n / GeneRatio_d,
-      Description  = str_wrap(Description, width = 32),
+      Description  = str_wrap(Description, width = 22),
       output_class = assign_output_class(Description),
       hallmark     = assign_hallmark(Description)
     )
@@ -429,7 +429,7 @@ plot_go_annotated <- function(go_df, title_expr, direction = "up") {
   p <- ggplot(go_df, aes(x = ratio, y = Description)) +
 
     # Layer 1: outer circle = HSF1 output class (thick ring)
-    geom_point(aes(size  = Count + 4,
+    geom_point(aes(size  = Count + 3,
                    color = output_class),
                alpha = 1) +
     scale_color_manual(
@@ -489,22 +489,22 @@ plot_go_annotated <- function(go_df, title_expr, direction = "up") {
     coord_cartesian(clip = "off") +
     labs(title = title_expr, x = "Gene ratio", y = NULL) +
 
-    theme_bw(base_size = 11) +
+    theme_bw(base_size = 9) +
     theme(
       plot.title         = element_text(
-                             size   = 11,
+                             size   = 9,
                              face   = "bold",
                              hjust  = 0,
                              margin = margin(b = 5)),
-      axis.text.y        = element_text(size = 8.5, color = "grey15"),
-      axis.text.x        = element_text(size = 8.5),
-      axis.title.x       = element_text(size = 9.5, margin = margin(t = 4)),
+      axis.text.y        = element_text(size = 7.5, color = "grey15"),
+      axis.text.x        = element_text(size = 7.5),
+      axis.title.x       = element_text(size = 8.5, margin = margin(t = 4)),
       panel.grid.major.y = element_line(color = "grey93", linewidth = 0.3),
       panel.grid.major.x = element_line(color = "grey93", linewidth = 0.3),
       panel.grid.minor   = element_blank(),
       panel.border       = element_rect(color = "grey60", linewidth = 0.4),
       legend.position    = "none",   # legends handled by shared bottom legend
-      plot.margin        = margin(8, 50, 8, 8)
+      plot.margin        = margin(5, 45, 5, 5)
     )
 
   return(p)
@@ -659,8 +659,8 @@ cat("\nExporting Figure 5 (Homo sapiens)...\n")
 
 ggsave("Figure5_Homo_sapiens.tiff",
        plot   = figure5,
-       width  = 19,
-       height = 24,
+       width  = 26,
+       height = 18,
        units  = "cm",
        dpi    = 600,
        device = "tiff",
@@ -668,8 +668,8 @@ ggsave("Figure5_Homo_sapiens.tiff",
 
 ggsave("Figure5_Homo_sapiens.pdf",
        plot   = figure5,
-       width  = 19,
-       height = 24,
+       width  = 26,
+       height = 18,
        units  = "cm",
        device = "pdf",
        bg     = "white")
@@ -680,8 +680,8 @@ cat("\nExporting Figure 6 (C. elegans)...\n")
 
 ggsave("Figure6_C_elegans.tiff",
        plot   = figure6,
-       width  = 19,
-       height = 24,
+       width  = 26,
+       height = 18,
        units  = "cm",
        dpi    = 600,
        device = "tiff",
@@ -689,8 +689,8 @@ ggsave("Figure6_C_elegans.tiff",
 
 ggsave("Figure6_C_elegans.pdf",
        plot   = figure6,
-       width  = 19,
-       height = 24,
+       width  = 26,
+       height = 18,
        units  = "cm",
        device = "pdf",
        bg     = "white")
